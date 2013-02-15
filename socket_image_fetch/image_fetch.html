@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image fetcher</title>
+</head>
+<body>
+    <script type="text/javascript">
+      var net = require('net');
+      var images = []
+      for (var i =0 ; i < 5 ; i++){
+        var socket = net.createConnection(4444,"localhost");
+        socket.on('data',function(data){
+            document.write('<img alt="Embedded Image" src="data:image/png;base64,' + data.toString('base64') + '" /> <br>');
+        });
+        socket.on('error',function(err){
+          console.log(err);
+        })
+      }
+    </script>
+</body >
+</html>
